@@ -8,4 +8,11 @@ def mvnCmd="${mvnHome}/bin/mvn"
 sh "${mvnCmd} clean package"
 
 }
+stage('Build Docker Image'){
+def dockerHome= tool name: 'docker', type: 'dockerTool'
+def dockerCmd="${dockerHome}/bin/mvn"
+ sh "${dockerCmd} clean package"            
+
+
+}
  }
