@@ -1,15 +1,11 @@
-pipeline {
-    agent none
-   stages {     
-    stage('Maven Install') {
-      agent {         
-       docker {          
-         image 'maven:3.5.0'         
-     }       
-  }       
-  steps {
-       sh 'mvn clean install'
-       }
-     }
-   }
+node {
+stage('scm management'){
+git credentialsId: 'github', url: 'https://github.com/zakaria0410/testDevops.git'
+}
+stage('maven'){
+def mvnHome = tool name: 'maven', type: 'maven'
+def mvnCmd="${mvnHome}/bin/mvn"
+sh "${mvnCmd} clean package"
+
+}
  }
