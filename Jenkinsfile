@@ -8,10 +8,16 @@ def mvnCmd="${mvnHome}/bin/mvn"
 sh "${mvnCmd} clean package"
 
 }
+stage('test Docker commande'){
+
+ sh 'docker --version'            
+ 
+
+}
 stage('Build Docker Image'){
 
- sh "docker --version"            
-
+ sh 'docker build -t testdevops/testdevops:lts .'            
+ 
 
 }
  }
